@@ -1,0 +1,19 @@
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.11/ext/mri
+/usr/local/bin/ruby -r ./siteconf20170912-3331-15vrxp3.rb extconf.rb
+creating Makefile
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20170912-3331-xvh5li

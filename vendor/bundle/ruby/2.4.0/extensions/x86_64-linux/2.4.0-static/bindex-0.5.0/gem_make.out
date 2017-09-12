@@ -1,0 +1,15 @@
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+/usr/local/bin/ruby -r ./siteconf20170912-21631-10hkiuj.rb extconf.rb
+creating Makefile
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20170912-21631-h99w74/bindex

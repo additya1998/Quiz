@@ -1,0 +1,19 @@
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+/usr/local/bin/ruby -r ./siteconf20170912-21631-mfqjge.rb extconf.rb
+creating Makefile
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/additya/Monsoon2017/SSAD/Assignment2/Quiz/vendor/bundle/ruby/2.4.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20170912-21631-1nrbpsy/byebug
