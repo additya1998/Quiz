@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1> All Users </h1>
+<form action="/update" method="post">
+<table>
+	<tr>
+		<th> Username </th>
+		<th> E - Mail </th>
+		<th> Password </th>
+	</tr>
+	<% @users.each do |user| %>
+		<tr>
+			<td> <%= user.username %> </td>
+			<td> <%= user.email %> </td>
+			<td> <%= user.password %> </td>
+			<td> <button type="submit" name="user_to_edit" value="<%= user.username %>"> Edit </button> </td>
+			<td> <button type="submit" name="user_to_delete" value="<%= user.username %>"> Delete </button> </td>
+		</tr>
+	<%end %>
+</table>
+</form>
+</body>
+</html>

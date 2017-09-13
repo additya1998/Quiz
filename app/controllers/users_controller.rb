@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	
 	before_action :check_logged_in, only: [:logout]
@@ -26,7 +26,7 @@ class UserController < ApplicationController
 			@user.password = request['password']
 			puts @user.username
 			if @user.save
-				session[:username] = @user.id
+				session[:username] = @user.username
 				redirect_to '/profile'
 			else 
 				redirect_to '/register'
@@ -38,10 +38,10 @@ class UserController < ApplicationController
 		if request.get?
 			render 'login'
 		else
-			@id = User.authenticate(request['username'], request['password'])
-			if @id
+			@username = User.authenticate(request['username'], request['password'])
+			if @username
 				puts "true"
-				session[:username] = @id
+				session[:username] = @username
 				puts session[:username]
 				redirect_to '/profile'
 			else 
@@ -66,4 +66,5 @@ class UserController < ApplicationController
 		session[:username] = nil
 		redirect_to '/login'
 	end
+
 end
