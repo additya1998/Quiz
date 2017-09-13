@@ -14,4 +14,5 @@ class User < ApplicationRecord
 		end
 	end
 
+	has_many :games
 end

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1> All Users </h1>
+<table>
+	<tr>
+		<th> Username </th>
+		<th> Password </th>
+	</tr>
+	<% @admins.each do |admin| %>
+		<tr>
+			<td> <%= admin.username %> </td>
+			<td> <%= admin.password %> </td>
+		</tr>
+	<%end %>
+</table>
+</body>
+</html>
