@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     match '/profile' => 'users#profile', via: [:get]
     match '/logout' => 'users#logout', via: [:get]
     match '/dashboard' => 'users#index', via: [:get]
-    match '/play' => 'users#play', via: [:post]
+    
+    match '/play' => 'games#play', via: [:post]
+    match '/showQuestion/:category/:subCategory/:question' => 'games#showQuestion', via: [:get]
+    match '/submit/:category/:subCategory/:question' => 'games#submit', via: [:post]
 
     match '/admin/showUsers' => 'admins#showUsers', via: [:get]
     match '/admin/updateUser' => 'admins#updateUser', via: [:post]

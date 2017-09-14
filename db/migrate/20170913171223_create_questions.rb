@@ -9,6 +9,7 @@ class CreateQuestions < ActiveRecord::Migration[5.1]
 			t.string :answer
 			t.string :category
 			t.string :subCategory
+            t.string :type
 			t.timestamps
 		end
 	end

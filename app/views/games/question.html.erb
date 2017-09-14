@@ -1,0 +1,29 @@
+<h1> Question </h1>
+Category : <%= @showQuestion.category %> <br />
+Sub-category : <%= @showQuestion.subCategory %> <br />
+<br />
+Question: <%= @showQuestion.question %> <br /> 
+<form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
+
+Option 1: 
+<input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" />
+	<%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %>
+<br />
+
+Option 2: 
+<input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" />
+	<%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %>
+<br />
+
+Option 3: 
+<input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" />
+	<%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %>
+<br />
+
+Option 4: 
+<input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" />
+	<%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %>
+<br />
+
+<button type="submit" name="submit"> Submit </button>
+</form>

@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170913202926) do
     t.string "category"
     t.string "subCategory"
     t.string "state"
-    t.integer "currentScore"
-    t.integer "highestScore"
+    t.integer "currentScore", default: 0
+    t.integer "highestScore", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_games_on_user_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170913202926) do
     t.string "answer"
     t.string "category"
     t.string "subCategory"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

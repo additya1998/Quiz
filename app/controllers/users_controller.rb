@@ -19,21 +19,22 @@ class UsersController < ApplicationController
 	def index
 		@user = User.where(username: session[:username]).first
 
-		@games = [], @first = [], @second = []
+		@games = []
+		@first = []
+		@second = []
 		@first << ['Science', 'Computers', '', 0, 0]
 		@first << ['Science', 'Nature', '', 0, 0]
 		@second << ['Entertainment', 'Television', '', 0, 0]
 		@second << ['Entertainment', 'Books', '', 0, 0]
 		@second << ['Entertainment', 'Music', '', 0, 0]
 
-		@games << []
 		@games << @first
 		@games << @second
 		
 		@user.games.each do |loopGame|
-			@games[loopGame.category][loopGame.subCategory][2] = loopGame.state 
-			@games[loopGame.category][loopGame.subCategory][3] = loopGame.currentScore 
-			@games[loopGame.category][loopGame.subCategory][4] = loopGame.highestScore
+			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][2] = loopGame.state
+			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][3] = loopGame.currentScore.to_s 
+			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_s
 		end
 
 		render 'dashboard'
@@ -63,9 +64,7 @@ class UsersController < ApplicationController
 		else
 			@username = User.authenticate(request['username'], request['password'])
 			if @username
-				puts "true"
 				session[:username] = @username
-				puts session[:username]
 				redirect_to '/profile'
 			else 
 				redirect_to '/login'
@@ -82,24 +81,6 @@ class UsersController < ApplicationController
 			else
 				redirect_to '/login'
 			end
-		end
-	end
-
-	def play
-		if params[:new_game]
-			@choice = params[:new_game].split(';')
-			@choice[0] = @choice[0].strip
-			@choice[1] = @choice[1].strip
-			@category = ENV[@choice[0]]
-			@subCategory = ENV[@choice[1]]
-
-		elsif params[:continue_game]
-			@choice = params[:continue_game].split(';')
-			@choice[0] = @choice[0].strip
-			@choice[1] = @choice[1].strip
-			@category = ENV[@choice[0]]
-			@subCategory = ENV[@choice[1]]
-			
 		end
 	end
 

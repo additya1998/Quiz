@@ -5,8 +5,8 @@ class CreateGames < ActiveRecord::Migration[5.1]
 			t.string :category
 			t.string :subCategory
 			t.string :state
-			t.integer :currentScore
-			t.integer :highestScore
+			t.integer :currentScore, :default => 0
+			t.integer :highestScore, :default => 0
 			t.timestamps
 		end
 	end

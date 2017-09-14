@@ -6,7 +6,7 @@ class AddQuestionsJob < ApplicationJob
 		require 'json'
 
 		# Category: Science, Sub: Computers
-		response = open('https://opentdb.com/api.php?amount=50&category=18&type=multiple').read
+		response = open('https://opentdb.com/api.php?amount=5&category=18&type=multiple').read
 		response = JSON.parse(response)
 		if response['response_code'] == 0
 			for current in response['results']
@@ -17,8 +17,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = ENV['Science'] 
-				@question.subCategory = ENV['Computers'] 
+				@question.category = 'Science' 
+				@question.subCategory = 'Computers' 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -27,7 +27,7 @@ class AddQuestionsJob < ApplicationJob
 
 		
 		# Category: Science, Sub: Nature
-		response = open('https://opentdb.com/api.php?amount=50&category=17&type=multiple').read
+		response = open('https://opentdb.com/api.php?amount=5&category=17&type=multiple').read
 		response = JSON.parse(response)
 		if response['response_code'] == 0
 			for current in response['results']
@@ -38,8 +38,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = ENV['Science'] 
-				@question.subCategory = ENV['Nature'] 
+				@question.category = 'Science' 
+				@question.subCategory = 'Nature' 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -48,7 +48,7 @@ class AddQuestionsJob < ApplicationJob
 
 
 		# Category: Entertainment, Sub: Television
-		response = open('https://opentdb.com/api.php?amount=50&category=14&type=multiple').read
+		response = open('https://opentdb.com/api.php?amount=5&category=14&type=multiple').read
 		response = JSON.parse(response)
 		if response['response_code'] == 0
 			for current in response['results']
@@ -59,8 +59,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = ENV['Entertainment'] 
-				@question.subCategory = ENV['Television'] 
+				@question.category = 'Entertainment' 
+				@question.subCategory = 'Television' 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -69,7 +69,7 @@ class AddQuestionsJob < ApplicationJob
 
 
 		# Category: Entertainment, Sub: Books
-		response = open('https://opentdb.com/api.php?amount=50&category=10&type=multiple').read
+		response = open('https://opentdb.com/api.php?amount=5&category=10&type=multiple').read
 		response = JSON.parse(response)
 		if response['response_code'] == 0
 			for current in response['results']
@@ -80,8 +80,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = ENV['Entertainment'] 
-				@question.subCategory = ENV['Books'] 
+				@question.category = 'Entertainment' 
+				@question.subCategory = 'Books' 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -90,7 +90,7 @@ class AddQuestionsJob < ApplicationJob
 
 
 		# Category: Entertainment, Sub: Music
-		response = open('https://opentdb.com/api.php?amount=50&category=12&type=multiple').read
+		response = open('https://opentdb.com/api.php?amount=5&category=12&type=multiple').read
 		response = JSON.parse(response)
 		if response['response_code'] == 0
 			for current in response['results']
@@ -101,8 +101,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = ENV['Entertainment'] 
-				@question.subCategory = ENV['Music'] 
+				@question.category = 'Entertainment' 
+				@question.subCategory = 'Music' 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
