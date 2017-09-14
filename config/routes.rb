@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     match '/profile/:username' => 'users#profile', via: [:get]
     match '/profile' => 'users#profile', via: [:get]
     match '/logout' => 'users#logout', via: [:get]
+    match '/dashboard' => 'users#index', via: [:get]
+    match '/play' => 'users#play', via: [:post]
 
     match '/admin/showUsers' => 'admins#showUsers', via: [:get]
     match '/admin/updateUser' => 'admins#updateUser', via: [:post]

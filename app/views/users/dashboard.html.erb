@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1> All Games </h1>
+<form action="/play" method="post">
+<table>
+	<tr>
+		<th> Category </th>
+		<th> Sub - Category </th>
+		<th> Current Score </th>
+		<th> Highest Score </th>
+	</tr>
+	<% $index = 1 %>
+	<% begin %>
+		<% @games[$index].each do |game| %>
+			<tr>
+				<td> <%= game[0] %> </td>
+				<td> <%= game[1] %> </td>
+				<td> <%= game[3] %> </td>
+				<td> <%= game[4] %> </td>
+				<td> <button type="submit" name="new_game" value="<%= game[0] %>; <%= game[1] %>" > New Game </button> </td>
+				<% if game[3] == 0 %>
+				<td> <button type="submit" name="continue_game" value="<%= game[0] %>; <%= game[1] %>" > Continue Game </button> </td>
+				<% elsif %>
+				<td> <button type="submit" name="continue_game" value="<%= game[0] %>; <%= game[1] %>" > Continue Game </button> </td>
+				<% end %>
+			</tr>
+		<% end %>
+		<% $index = $index + 1 %>
+	<% end while $index < 3 %>
+</table>
+<%= @games[0][0] %>
+</body>
+</html>

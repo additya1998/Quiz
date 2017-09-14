@@ -17,8 +17,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = 'Science' 
-				@question.subCategory = 'Computers' 
+				@question.category = ENV['Science'] 
+				@question.subCategory = ENV['Computers'] 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -38,8 +38,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = 'Science' 
-				@question.subCategory = 'Nature' 
+				@question.category = ENV['Science'] 
+				@question.subCategory = ENV['Nature'] 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -59,8 +59,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = 'Entertainment' 
-				@question.subCategory = 'Television' 
+				@question.category = ENV['Entertainment'] 
+				@question.subCategory = ENV['Television'] 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -80,8 +80,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = 'Entertainment' 
-				@question.subCategory = 'Books' 
+				@question.category = ENV['Entertainment'] 
+				@question.subCategory = ENV['Books'] 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
@@ -101,8 +101,8 @@ class AddQuestionsJob < ApplicationJob
 				@question.thirdOption = current['incorrect_answers'][1]
 				@question.fourthOption = current['incorrect_answers'][2]
 				@question.answer = current['correct_answer'] 
-				@question.category = 'Entertainment' 
-				@question.subCategory = 'Music' 
+				@question.category = ENV['Entertainment'] 
+				@question.subCategory = ENV['Music'] 
 				if Question.where(question: response['question']).first == nil
 					@question.save
 				end
