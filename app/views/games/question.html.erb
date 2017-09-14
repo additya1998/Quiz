@@ -2,7 +2,7 @@
 Category : <%= @showQuestion.category %> <br />
 Sub-category : <%= @showQuestion.subCategory %> <br />
 <br />
-Question: <%= @showQuestion.question %> <br /> 
+Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> <br /> 
 <form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
 
 Option 1: 

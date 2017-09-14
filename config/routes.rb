@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+ 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     match '/register' => 'users#register', via: [:get, :post]
     match '/login' => 'users#login', via: [:get, :post]
+    match '/logout' => 'users#logout', via: [:get]
+    
     match '/profile/:username' => 'users#profile', via: [:get]
     match '/profile' => 'users#profile', via: [:get]
-    match '/logout' => 'users#logout', via: [:get]
     match '/dashboard' => 'users#index', via: [:get]
     
     match '/play' => 'games#play', via: [:post]

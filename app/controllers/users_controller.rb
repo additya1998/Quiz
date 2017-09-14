@@ -1,16 +1,20 @@
 class UsersController < ApplicationController
-	skip_before_action :verify_authenticity_token
 	
-	before_action :check_logged_in, only: [:logout, :profile, :index]
-	before_action :check_not_logged_in, only: [:register, :login]
-	
+    # before_action :set_user, only: [:check_logged_in, :check_logged_in, :profile]
+    before_action :check_logged_in, only: [:logout, :profile, :index]
+    before_action :check_not_logged_in, only: [:register, :login]
+
 	def check_logged_in
+        puts "ABC"
+        puts session[:username]
 		if not session[:username]
 			redirect_to '/login'
 		end
 	end
 
 	def check_not_logged_in
+        puts "NOT"
+        puts session[:username]
 		if session[:username]
 			redirect_to '/profile'
 		end
@@ -40,38 +44,6 @@ class UsersController < ApplicationController
 		render 'dashboard'
 	end
 
-	def register
-		if request.get?
-			render 'register'
-		else
-			@user = User.new()
-			@user.username = request['username']
-			@user.email = request['email']
-			@user.password = request['password']
-			puts @user.username
-			if @user.save
-				session[:username] = @user.username
-				redirect_to '/profile'
-			else 
-				redirect_to '/register'
-			end
-		end
-	end
-
-	def login
-		if request.get?
-			render 'login'
-		else
-			@username = User.authenticate(request['username'], request['password'])
-			if @username
-				session[:username] = @username
-				redirect_to '/profile'
-			else 
-				redirect_to '/login'
-			end
-		end
-	end
-
 	def profile
 		if request['username']
 			render 'profile', locals: {username: request['username']}
@@ -84,9 +56,51 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def logout
-		session[:username] = nil
-		redirect_to '/login'
-	end
+    def register
+        if request.get?
+            render 'register'
+        else
+            @user = User.new()
+            @user.username = request['username']
+            @user.email = request['email']
+            @user.password = request['password']
+            if @user.save
+                session[:username] = @user.username
+                redirect_to '/profile'
+            else 
+                redirect_to '/register'
+            end
+        end
+    end
+
+    def logout
+        session[:username] = nil
+        redirect_to '/login'
+    end
+
+    def login
+        if request.get?
+            render 'login'
+        else
+            user = User.where(username: params[:username]).first
+            if user and user.authenticate(params[:password])
+                session[:username] = user.username
+                session[:user_id] = user.id
+                puts 'session username'
+                puts session[:username]
+                redirect_to :action => 'profile'
+            else 
+                redirect_to '/login'
+            end
+        end
+    end
+
+    private
+
+        def set_user
+            # puts "set_user"
+            # puts params[:username]
+            # @user = User.where(username: params[:username]).first
+        end
 
 end

@@ -4,15 +4,7 @@ class User < ApplicationRecord
 	validates :username,  presence: true, length: { maximum: 255 }, uniqueness: true
 	validates :password,  presence: true, length: { maximum: 255 }, uniqueness: false
 	validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-
-	def self.authenticate(username, password)
-		@user = self.where(username: username, password: password).first
-		if @user
-			return @user.username
-		else
-			return false
-		end
-	end
+    has_secure_password
 
 	has_many :games
 end
