@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1> Edit User <%= @user.username %> </h1>
-<form action="/admin/editUser/<%= @user.username %>" method="post">
-	Username: <input type="text" name="username" value="<%= @user.username %>"> 
-	E - Mail: <input type="text" name="email" value="<%= @user.email %>"> 
-	Password: <input type="text" name="password" value="<%= @user.password %>"> 
-	<button type="submit" name="edit" value="<%= @user.username %>"> Edit </button>
-	<button type="submit" name="delete" value="<%= @user.username %>"> Delete </button>
-</form>
-</body>
-</html>
+<div style="padding-top: 150px">
+    <h1> Edit User <%= @user.username %> </h1>
+    <br />
+    <form action="/admin/editUser/<%= @user.username %>" method="post">
+        <div class="form-group ">
+            <label class="control-label"> Username </label>
+            <input type="text" name="username" disabled="disabled"/>
+        </div>
+        <br />
+        <div class="form-group ">
+            <label class="control-label"> E - Mail </label>
+            <input type="text" name="email" />
+        </div>
+        <br />
+        <div class="form-group ">
+            <label class="control-label"> Password </label>
+            <input type="password" name="password" />
+        </div>
+        <br />
+            <div class="form-group" style="color: black">
+                <button type="submit" name="edit" value="<%= @user.username %>"> Edit </button>
+                <button type="submit" name="delete" value="<%= @user.username %>"> Delete </button>
+            </div>
+        <br />
+    </form>
+</div>

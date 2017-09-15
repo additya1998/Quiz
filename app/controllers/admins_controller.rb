@@ -32,9 +32,13 @@ class AdminsController < ApplicationController
 			if params[:delete]
 				deleteUser(params[:delete])
 			elsif params[:edit]
-				@user.username = request[:username]
-				@user.email = request[:email]
-				@user.password = request[:password]
+                if request[:email].to_s != nil
+                    @user.email = request[:email]
+                end
+                @user.email = request[:email]
+				if request[:password].to_s != nil
+                    @user.password = request[:password]
+                end
 				@user.save
 			end
 			redirect_to '/admin/showUsers'

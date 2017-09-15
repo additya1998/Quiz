@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html>
-<body>
 <h1> All Users </h1>
+<br /> <br />
 <form action="/admin/updateUser" method="post">
-<table>
-	<tr>
-		<th> Username </th>
-		<th> E - Mail </th>
-		<th> Password </th>
+<table style="margin-left: 250px; width: 75%" class="table">
+	<tr style="text-align: center">
+		<th style="text-align: center"> Username </th>
+		<th style="text-align: center"> E - Mail </th>
+        <th style="text-align: center"> Password </th>
+        <th style="text-align: center"> </th>
+		<th style="text-align: center"> </th>
 	</tr>
 	<% @users.each do |user| %>
 		<tr>
-			<td> <%= user.username %> </td>
-			<td> <%= user.email %> </td>
-			<td> <%= user.password %> </td>
-			<td> <button type="submit" name="user_to_edit" value="<%= user.username %>"> Edit </button> </td>
-			<td> <button type="submit" name="user_to_delete" value="<%= user.username %>"> Delete </button> </td>
+			<td style="text-align: center"> <%= user.username %> </td>
+			<td style="text-align: center"> <%= user.email %> </td>
+			<td style="text-align: center"> <%= user.password %> </td>
+			<td style="text-align: center"> <button type="submit" name="user_to_edit" value="<%= user.username %>"> Edit </button> </td>
+			<td style="text-align: center"> <button type="submit" name="user_to_delete" value="<%= user.username %>"> Delete </button> </td>
 		</tr>
 	<%end %>
 </table>
 </form>
-</body>
-</html>

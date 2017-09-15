@@ -1,10 +1,28 @@
-<h1> Welcome <%= username  %> </h1>
+<h1> Welcome to <%= @user.username  %>'s profile </h1>
 <% if @edit == true %>
-<h3> Edit Details </h3>
+<br /> <br />
+
 <form action="/profile" method="post">
-	Password: <input type="password" name="password"> <br /> <br />
-	E-Mail <input type="text" name="email"> <br /> <br />
-	<button type="submit" name="edit"> Edit </button> 
-	<button type="submit" name="delete"> Delete </button>
+    <h2> Update Profile </h2> <br />
+    <div class="form-group ">
+        <label class="control-label"> E - Mail </label>
+        <input type="text" name="email" value="<%=@user.email%>" />
+    </div>
+    <br />
+    <div class="form-group ">
+        <label class="control-label"> Password </label>
+        <input type="password" name="password" />
+    </div>
+    <br />
+        <div class="form-group" style="color: black">
+            <button type="submit" name="edit"> Edit </button> 
+            <button type="submit" name="delete"> Delete </button>
+        </div>
+    <br />
+</form>
+
+
+
+
 </form>
 <% end %>

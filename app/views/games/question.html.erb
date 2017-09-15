@@ -1,29 +1,39 @@
 <h1> Question </h1>
-Category : <%= @showQuestion.category %> <br />
-Sub-category : <%= @showQuestion.subCategory %> <br />
 <br />
-Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> <br /> 
+<h2> Category : <%= @showQuestion.category %> </h2>
+<h2> Sub-category : <%= @showQuestion.subCategory %> </h2> <br />
+<br />
+<h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br /> 
+
 <form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
 
-Option 1: 
-<input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" />
-	<%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %>
-<br />
+<div class="form-group ">
+	<label> Option 1: 
+		<input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" />
+		<%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %>
+	</label>
+</div>
 
-Option 2: 
-<input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" />
-	<%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %>
-<br />
+<div class="form-group ">
+	<label> Option 2: 
+		<input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" />
+		<%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %>
+	</label>
+</div>
 
-Option 3: 
-<input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" />
-	<%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %>
-<br />
+<div class="form-group ">
+	<label> Option 3: 
+		<input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" />
+		<%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %>
+	</label>
+</div>
 
-Option 4: 
-<input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" />
-	<%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %>
-<br />
+<div class="form-group ">
+	<label> Option 4: 
+		<input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" />
+		<%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %>
+	</label>
+</div>
 
 <button type="submit" name="submit"> Submit </button>
 </form>

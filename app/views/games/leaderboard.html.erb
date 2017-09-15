@@ -2,19 +2,20 @@
 <% @data.each do |current| %>
 	<h3>
 		Category: <%= current[0] %>
+        <br />
 		Subcategory: <%= current[1] %>
 	</h3>
 
-	<table>
+    <table style="margin-left: 250px; width: 75%;" class="table">
 	<tr>
-		<th> Username </th>
-		<th> Highest Score </th>
+		<th style="text-align: center;"> Username </th>
+		<th style="text-align: center;"> Highest Score </th>
 	</tr>
 	<% if current[2] %>
 		<% current[2].each do |record| %>
 			<tr>
-			<td> <%= record[0] %> </td>
-			<td> <%= record[1] %> </td>
+			<td style="text-align: center;"> <%= record[0] %> </td>
+			<td style="text-align: center;"> <%= record[1] %> </td>
 			</tr>
 		<% end %>
 	<% end %>

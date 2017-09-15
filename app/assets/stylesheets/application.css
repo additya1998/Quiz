@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background: url('/background.png');
+    text-align: center;
+    color: white
+} 
+
+input {
+    color: black;
+    width: 10%
+}
+
+label {
+    font-size: x-large;
+}
+
+h1 {
+    font-size: 50px 
+}
+
+table, td, th {
+    padding: 10px
+}
+
+th {
+    font-size: x-large
+}
+
+button {
+    color: black;
+}

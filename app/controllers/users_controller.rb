@@ -5,16 +5,12 @@ class UsersController < ApplicationController
 	before_action :check_not_logged_in, only: [:register, :login]
 
 	def check_logged_in
-		puts "ABC"
-		puts session[:username]
 		if not session[:username]
 			redirect_to '/login'
 		end
 	end
 
 	def check_not_logged_in
-		puts "NOT"
-		puts session[:username]
 		if session[:username]
 			redirect_to '/profile'
 		end
@@ -53,7 +49,8 @@ class UsersController < ApplicationController
 						@edit = true
 					end
 				end
-				render 'profile', locals: {username: request['username']}
+                @user = User.where(username: request['username']).first
+				render 'profile'
 			else 
 				if session[:username]
 					@edit = true

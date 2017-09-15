@@ -1,8 +1,20 @@
-<html>
-<h1>Register Admin</h1>
-<form action="/admin/registerAdmin" method="post">
-    Username: <input type="text" name="username">
-    Password: <input type="password" name="password">
-    <input type="submit" value="Submit">
-</form>
-</html>
+<div style="padding-top: 150px">
+    <h1>Register Admin</h1>
+    <br />
+    <form action="/admin/registerAdmin" method="post">
+        <div class="form-group ">
+            <label class="control-label"> Username </label>
+            <input type="text" name="username" />
+        </div>
+        <br />
+        <div class="form-group ">
+            <label class="control-label"> Password </label>
+            <input type="password" name="password" />
+        </div>
+        <br />
+            <div class="form-group" style="color: black">
+                <input type="submit" value="Submit">
+            </div>
+        <br />
+    </form>
+</div>
