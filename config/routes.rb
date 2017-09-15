@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     match '/play' => 'games#play', via: [:post]
     match '/showQuestion/:category/:subCategory/:question' => 'games#showQuestion', via: [:get]
     match '/submit/:category/:subCategory/:question' => 'games#submit', via: [:post]
+    match '/leaderboard' => 'games#leaderboard', via: [:get]
 
     match '/admin/showUsers' => 'admins#showUsers', via: [:get]
     match '/admin/updateUser' => 'admins#updateUser', via: [:post]

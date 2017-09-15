@@ -77,6 +77,41 @@ class GamesController < ApplicationController
 		end
 	end
 
+	def leaderboard
+		@data = []
+
+		@data << ['Science', 'Computers', []]
+		array = Game.where(category: 'Science', subCategory: 'Computers').order('highestScore')
+		array.each do |record|
+			@data[0][2] << [record.user.username, record.highestScore]
+		end
+
+		@data << ['Science', 'Nature', []]
+		array = Game.where(category: 'Science', subCategory: 'Nature').order('highestScore')
+		array.each do |record|
+			@data[1][2] << [record.user.username, record.highestScore]
+		end
+
+		@data << ['Entertainment', 'Television', []]
+		array = Game.where(category: 'Entertainment', subCategory: 'Television').order('highestScore')
+		array.each do |record|
+			@data[2][2] << [record.user.username, record.highestScore]
+		end
+
+		@data << ['Entertainment', 'Books', []]
+		array = Game.where(category: 'Entertainment', subCategory: 'Books').order('highestScore')
+		array.each do |record|
+			@data[3][2] << [record.user.username, record.highestScore]
+		end
+
+		@data << ['Entertainment', 'Music', []]
+		array = Game.where(category: 'Entertainment', subCategory: 'Music').order('highestScore')
+		array.each do |record|
+			@data[4][2] << [record.user.username, record.highestScore]
+		end
+
+		render 'leaderboard'
+	end
 
 	private
 
