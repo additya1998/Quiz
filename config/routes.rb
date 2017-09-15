@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     match '/logout' => 'users#logout', via: [:get]
     
     match '/profile/:username' => 'users#profile', via: [:get]
-    match '/profile' => 'users#profile', via: [:get]
+    match '/profile' => 'users#profile', via: [:get, :post]
     match '/dashboard' => 'users#index', via: [:get]
     
     match '/play' => 'games#play', via: [:post]
@@ -20,6 +20,5 @@ Rails.application.routes.draw do
    
     match '/admin/showAdmins' => 'admins#showAdmins', via: [:get]
     match '/admin/registerAdmin' => 'admins#registerAdmin', via: [:get, :post]
-
 
 end

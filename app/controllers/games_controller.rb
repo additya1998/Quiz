@@ -1,10 +1,9 @@
 class GamesController < ApplicationController
 	
+	before_action :get_user
+	before_action :fetch_data, only: [:showQuestion, :submit]
+
 	def showQuestion
-		@category = request[:category]
-		@subCategory = request[:subCategory]
-		@user = User.where(username: session[:username]).first
-		@currentGame = @user.games.where(category: @category, subCategory: @subCategory).first
 		if @currentGame
 			@stateVariable = @currentGame.state.split(';')
 			@question = @stateVariable[1].strip
@@ -39,10 +38,7 @@ class GamesController < ApplicationController
 
 		@size = Question.where(category: @category, subCategory: @subCategory).count
 		@start = Random.rand(@size)
-
-		@user = User.where(username: session[:username]).first
 		@currentGame = @user.games.where(category: @category, subCategory: @subCategory).first
-
 		if params[:new_game] and @currentGame == nil
 			@currentGame = @user.games.new()
 			@currentGame.highestScore = 0 			
@@ -62,11 +58,7 @@ class GamesController < ApplicationController
 	end
 
 	def submit
-		@user = User.where(username: session[:username]).first
-		@category = request[:category]
-		@subCategory = request[:subCategory]
 		@answer = request[:answer] 
-		@currentGame = @user.games.where(category: @category, subCategory: @subCategory).first
 		@stateVariable = @currentGame.state.split(';')
 		@questionNumber = @stateVariable[1].strip.to_i 
 		@question = Question.where(category: @category, subCategory: @subCategory).limit(@questionNumber.to_i + 1)[@questionNumber.to_i]
@@ -75,13 +67,26 @@ class GamesController < ApplicationController
 			@questionNumber = (@questionNumber + 1) % @size
 			@currentGame.state = @stateVariable[0] + ';' + @questionNumber.to_s
 			@currentGame.currentScore = @currentGame.currentScore + 1
-            if @currentGame.currentScore > @currentGame.highestScore
-                @currentGame.highestScore = @currentGame.currentScore
-            end
-            @currentGame.save
+			if @currentGame.currentScore > @currentGame.highestScore
+				@currentGame.highestScore = @currentGame.currentScore
+			end
+			@currentGame.save
 			redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		else
 			redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		end
 	end
+
+
+	private
+
+		def get_user
+			@user = User.where(username: session[:username]).first
+		end
+
+		def fetch_data
+			@category = request[:category]
+			@subCategory = request[:subCategory]
+			@currentGame = @user.games.where(category: @category, subCategory: @subCategory).first
+		end
 end

@@ -9,7 +9,6 @@ class AdminsController < ApplicationController
 		end
 	end
 
-	# For Users
 	def showUsers
 		@users = User.all
 		render 'showUsers'

@@ -1,1 +1,10 @@
-Welcome <%= username  %>
+<h1> Welcome <%= username  %> </h1>
+<% if @edit == true %>
+<h3> Edit Details </h3>
+<form action="/profile" method="post">
+	Password: <input type="password" name="password"> <br /> <br />
+	E-Mail <input type="text" name="email"> <br /> <br />
+	<button type="submit" name="edit"> Edit </button> 
+	<button type="submit" name="delete"> Delete </button>
+</form>
+<% end %>
