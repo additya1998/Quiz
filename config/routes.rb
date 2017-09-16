@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     match '/admin/editUser/:username' => 'admins#editUser', via: [:get, :post]
     match '/admin/registerUser' => 'admins#registerUser', via: [:get, :post]
    
+    match '/admin/showQuestions' => 'admins#showQuestions', via: [:get]
+    match '/admin/updateQuestion' => 'admins#updateQuestion', via: [:post]
+    match '/admin/editQuestion/:id' => 'admins#editQuestion', via: [:get, :post]
+    match '/admin/addQuestion' => 'admins#addQuestion', via: [:get, :post]
+
     match '/admin/showAdmins' => 'admins#showAdmins', via: [:get]
     match '/admin/registerAdmin' => 'admins#registerAdmin', via: [:get, :post]
 

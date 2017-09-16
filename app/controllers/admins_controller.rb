@@ -89,4 +89,69 @@ class AdminsController < ApplicationController
 		end
 	end
 
+    def showQuestions
+        @questions = Question.all
+        render 'showQuestions'
+    end
+    def deleteQuestion(question)
+        question = question.to_i
+        @question = Question.find(question)
+        if @question
+            @question.destroy
+        end
+    end
+    def editQuestion
+        if request.get?
+            @question = Question.find(request['id'].to_i)
+            render 'editQuestion'
+        else
+            if params[:delete]
+                deleteQuestion(params[:delete])
+            elsif params[:edit]
+                @question = Question.find(params[:edit].to_i)
+                @question.question = params['question'] 
+                @question.firstOption = params['firstOption'] 
+                @question.secondOption = params['secondOption'] 
+                @question.thirdOption = params['thirdOption']
+                @question.fourthOption = params['fourthOption']
+                @question.answer = params['answer'] 
+                @question.category = params['category'] 
+                @question.subCategory = params['subCategory'] 
+                @question.typeOfQuestion = params['typeOfQuestion'] 
+                @question.save
+            end
+            redirect_to '/admin/showQuestions'
+        end
+    end
+    def updateQuestion
+        if params[:question_to_delete]
+            deleteQuestion(params[:question_to_delete])
+            redirect_to '/admin/showQuestions'
+        elsif params[:question_to_edit]
+            redirect_to :action => 'editQuestion', :id => params[:question_to_edit]
+        else
+            redirect_to '/admin/showQuestions'
+        end
+    end
+    def addQuestion
+        if request.get?
+            render 'registerQuestion'
+        else
+            @question = Question.new()
+            @question.question = params['question'] 
+            @question.firstOption = params['firstOption'] 
+            @question.secondOption = params['secondOption'] 
+            @question.thirdOption = params['thirdOption']
+            @question.fourthOption = params['fourthOption']
+            @question.answer = params['answer'] 
+            @question.category = params['category'] 
+            @question.subCategory = params['subCategory'] 
+            @question.typeOfQuestion = params['typeOfQuestion'] 
+            @question.save
+            redirect_to '/admin/showQuestions'
+        end
+    end
+
+
+
 end

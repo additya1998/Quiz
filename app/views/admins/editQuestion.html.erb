@@ -1,0 +1,71 @@
+<h1 style="padding-top: 50px; text-align: center;"> Edit Question <%= @question.id %> </h1> <br />  <br />
+<body style="text-align: left">
+<div>
+    <br />
+    <form action="/admin/editQuestion/<%= @question.id %>" method="post">
+        <div class="form-group ">
+            <label class="control-label"> Question: </label>
+            <input type="text" name="question" value="<%= Nokogiri::HTML.parse(@question.question).text %>" style="width: 90%"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> First Option: </label>
+            <input type="text" name="firstOption" value="<%= Nokogiri::HTML.parse(@question.firstOption).text %>" />
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Second Option: </label>
+            <input type="text" name="secondOption" value="<%= Nokogiri::HTML.parse(@question.secondOption).text %>"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Third Option: </label>
+            <input type="text" name="thirdOption" value="<%= Nokogiri::HTML.parse(@question.thirdOption).text %>"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Fourth Option: </label>
+            <input type="text" name="fourthOption" value="<%= Nokogiri::HTML.parse(@question.fourthOption).text %>"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Answer: </label>
+            <input type="text" name="answer" value="<%= @question.answer %>" />
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Category: </label>
+            <input type="text" name="category" value="<%= @question.category %>"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Sub - Category: </label>
+            <input type="text" name="subCategory" value="<%= @question.subCategory %>"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Type: </label>
+            <input type="text" name="typeOfQuestion" value="<%= @question.typeOfQuestion %>"/>
+        </div>
+        <br />
+
+
+        <div Answer-group" style="color: black">
+            <button type="submit" name="edit" value="<%= @question.id %>"> Edit </button>
+            <button type="submit" name="delete" value="<%= @question.id %>"> Delete </button>
+        </div>
+        <br />
+    </form>
+</div>
+
+<%= render 'layouts/admin' %>
+
+</body>

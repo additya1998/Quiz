@@ -1,0 +1,67 @@
+<h1 style="padding-top: 50px; text-align: center;"> Add Question </h1> <br />  <br />
+<body style="text-align: left">
+<div>
+    <br />
+    <form action="/admin/addQuestion" method="post">
+        <div class="form-group ">
+            <label class="control-label"> Question: </label>
+            <input type="text" name="question" style="width: 90%"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> First Option: </label>
+            <input type="text" name="firstOption" />
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Second Option: </label>
+            <input type="text" name="secondOption" >
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Third Option: </label>
+            <input type="text" name="thirdOption" >
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Fourth Option: </label>
+            <input type="text" name="fourthOption" >
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Answer: </label>
+            <input type="text" name="answer" />
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Category: </label>
+            <input type="text" name="category"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Sub - Category: </label>
+            <input type="text" name="subCategory"/>
+        </div>
+        <br />
+
+        <div class="form-group ">
+            <label class="control-label"> Type: </label>
+            <input type="text" name="typeOfQuestion"/>
+        </div>
+        <br />
+
+        <div class="form-group" style="color: black">
+            <input type="submit" value="Submit">
+        </div>
+        <br />
+    </form>
+</div>
+
+<%= render 'layouts/admin' %>
