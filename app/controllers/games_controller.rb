@@ -10,7 +10,13 @@ class GamesController < ApplicationController
 				if @question == request[:question]
 					if request.get?
 						@showQuestion = Question.where(category: @category, subCategory: @subCategory).limit(@question.to_i + 1)[request[:question].to_i]
-						@questionNumber = @question.to_i
+						arrayToShuffle = [@showQuestion.firstOption, @showQuestion.secondOption, @showQuestion.thirdOption, @showQuestion.fourthOption]
+                        arrayToShuffle = arrayToShuffle.shuffle
+                        @showQuestion.firstOption = arrayToShuffle[0]
+                        @showQuestion.secondOption = arrayToShuffle[1]
+                        @showQuestion.thirdOption = arrayToShuffle[2]
+                        @showQuestion.fourthOption = arrayToShuffle[3]
+                        @questionNumber = @question.to_i
 						render 'question'
 					end
 				else
@@ -59,10 +65,12 @@ class GamesController < ApplicationController
 
 	def submit
 		@answer = request[:answer] 
-		@stateVariable = @currentGame.state.split(';')
-		@questionNumber = @stateVariable[1].strip.to_i 
-		@question = Question.where(category: @category, subCategory: @subCategory).limit(@questionNumber.to_i + 1)[@questionNumber.to_i]
-		@size = Question.where(category: @category, subCategory: @subCategory).count
+        @stateVariable = @currentGame.state.split(';')
+        @questionNumber = @stateVariable[1].strip.to_i 
+        @question = Question.where(category: @category, subCategory: @subCategory).limit(@questionNumber.to_i + 1)[@questionNumber.to_i]
+        @size = Question.where(category: @category, subCategory: @subCategory).count
+        puts @answer
+        puts @question.answer
 		if @answer == @question.answer
 			@questionNumber = (@questionNumber + 1) % @size
 			@currentGame.state = @stateVariable[0] + ';' + @questionNumber.to_s

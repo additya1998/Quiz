@@ -1,39 +1,47 @@
+<body style="text-align: left">
+<div style="text-align: center">
 <h1> Question </h1>
 <br />
 <h2> Category : <%= @showQuestion.category %> </h2>
-<h2> Sub-category : <%= @showQuestion.subCategory %> </h2> <br />
+<h2> Sub-category : <%= @showQuestion.subCategory %> </h2> 
 <br />
+</div>
+<div style="margin-left: 100px">
 <h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br /> 
-
+</div>
 <form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
-
-<div class="form-group ">
-	<label> Option 1: 
-		<input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" />
-		<%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %>
-	</label>
-</div>
-
-<div class="form-group ">
-	<label> Option 2: 
-		<input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" />
-		<%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %>
-	</label>
-</div>
-
-<div class="form-group ">
-	<label> Option 3: 
-		<input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" />
-		<%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %>
-	</label>
-</div>
-
-<div class="form-group ">
-	<label> Option 4: 
-		<input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" />
-		<%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %>
-	</label>
-</div>
-
-<button type="submit" name="submit"> Submit </button>
+<table style="margin-left: 100px">
+	<tr>
+		<label>
+			<td style="font-size: x-large"> Option 1: </td> 
+			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" /> </td>
+			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %> </td>
+		</label>
+	</tr>
+	<tr>
+		<label>
+			<td style="font-size: x-large"> Option 2: </td> 
+			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" /> </td>
+			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %> </td>
+		</label>
+	</tr>
+	<tr>
+		<label>
+			<td style="font-size: x-large"> Option 3: </td> 
+			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" /> </td>
+			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %> </td>
+		</label>
+	</tr>
+	<tr>
+		<label>
+			<td style="font-size: x-large"> Option 4: </td> 
+			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" /> </td>
+			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %> </td>
+		</label>
+	</tr>
+</table>
+<br />
+<br />
+<button type="submit" name="submit" style="margin-left: 450px; font-size: x-large"> Submit </button>
 </form>
+</body>

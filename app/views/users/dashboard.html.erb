@@ -4,10 +4,10 @@
 <form action="/play" method="post">
 <table style="margin-left: 250px; width: 75%" class="table">
 	<tr>
-		<th> Category </th>
-		<th> Sub-Category </th>
-		<th> Current Score </th>
-		<th> Highest Score </th>
+		<th style="text-align: center;"> Category </th>
+		<th style="text-align: center;"> Sub-Category </th>
+		<th style="text-align: center;"> Current Score </th>
+		<th style="text-align: center;"> Highest Score </th>
         <th></th>
         <th></th>
 	</tr>    
@@ -21,7 +21,7 @@
 			<td> <%= game[4] %> </td>
 			<td> <button type="submit" name="new_game" value="<%= game[0] %>; <%= game[1] %>" > New Game </button> </td>
 			<% if game[3] == 0 %>
-			<td> <button type="submit" name="continue_game" value="<%= game[0] %>; <%= game[1] %>" disabled> Continue Game </button> </td>
+			<td></td>
 			<% elsif %>
 			<td> <button type="submit" name="continue_game" value="<%= game[0] %>; <%= game[1] %>" > Continue Game </button> </td>
 			<% end %>

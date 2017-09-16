@@ -50,7 +50,11 @@ class UsersController < ApplicationController
 					end
 				end
                 @user = User.where(username: request['username']).first
-				render 'profile'
+				if @user
+                    render 'profile'
+                else
+                    redirect_to '/login'
+                end
 			else 
 				if session[:username]
 					@edit = true
