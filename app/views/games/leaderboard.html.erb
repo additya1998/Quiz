@@ -1,16 +1,11 @@
 <h1> Leaderboard </h1>
+<br />
 <% @data.each do |current| %>
 	<h3>
-		Category: <%= current[0] %>
-        <br />
-		Subcategory: <%= current[1] %>
+		<%= current[0] %> : <%= current[1] %>
 	</h3>
 
     <table style="margin-left: 250px; width: 75%;" class="table">
-	<tr>
-		<th style="text-align: center;"> Username </th>
-		<th style="text-align: center;"> Highest Score </th>
-	</tr>
 	<% if current[2] %>
 		<% current[2].each do |record| %>
 			<tr>
