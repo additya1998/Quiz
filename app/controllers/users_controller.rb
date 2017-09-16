@@ -108,9 +108,7 @@ class UsersController < ApplicationController
 			if user and user.authenticate(params[:password])
 				session[:username] = user.username
 				session[:user_id] = user.id
-				puts 'session username'
-				puts session[:username]
-				redirect_to :action => 'profile'
+				redirect_to :action => 'index'
 			else 
 				redirect_to '/login'
 			end

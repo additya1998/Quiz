@@ -1,7 +1,14 @@
 class GamesController < ApplicationController
 	
+    before_action :check_logged_in, only: [:showQuestion, :play, :submit, :get_user]
 	before_action :get_user
 	before_action :fetch_data, only: [:showQuestion, :submit]
+
+    def check_logged_in
+        if not session[:username]
+            redirect_to '/login'
+        end
+    end
 
 	def showQuestion
 		if @currentGame
@@ -86,7 +93,14 @@ class GamesController < ApplicationController
             @currentGame.save
             redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		else
-			redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
+            @gameScore = @currentGame.currentScore
+            @currentGame.state = nil
+            @currentGame.currentScore = 0
+            @currentGame.save
+            puts '--    ----------------'
+            puts @gameScore
+            render 'gameover'
+			# redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		end
 	end
 
