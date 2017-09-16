@@ -10,6 +10,11 @@
 
 <% if @showQuestion.typeOfQuestion.to_i == 1 or @showQuestion.typeOfQuestion.to_i == 2 %>
 	<h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br />
+    <% if @showQuestion.typeOfQuestion.to_i == 1 %> 
+        (Single Correct)
+    <% else %>
+        (Multiple Correct)
+    <% end %>
 
 <% elsif @showQuestion.typeOfQuestion.to_i == 3 %>
 	<h2> Identify the image </h2> <br />
