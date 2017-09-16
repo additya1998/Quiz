@@ -7,35 +7,74 @@
 <br />
 </div>
 <div style="margin-left: 100px">
-<h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br /> 
+
+<% if @showQuestion.typeOfQuestion.to_i == 1 or @showQuestion.typeOfQuestion.to_i == 2 %>
+	<h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br />
+
+<% elsif @showQuestion.typeOfQuestion.to_i == 3 %>
+	<h2> Identify the image </h2> <br />
+	<img src="<%=@showQuestion.question%>" style="width: 20%; height: 20%"/>
+
+<% elsif @showQuestion.typeOfQuestion.to_i == 4 %>
+	<h2> Identify the audio clip </h2> <br />
+	<audio controls>
+		<source src="<%=@showQuestion.question%>" type="audio/ogg">
+	</audio>
+
+<% end %>
+
 </div>
 <form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
 <table style="margin-left: 100px">
 	<tr>
 		<label>
 			<td style="font-size: x-large"> Option 1: </td> 
-			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" /> </td>
+			<td style="font-size: x-large">
+				<% if @showQuestion.typeOfQuestion.to_i == 2 %>
+					<input type="checkbox" name="answer[]" value="<%= @showQuestion.firstOption %>" />
+				<% else %>
+					<input type="radio" name="answer" value="<%= @showQuestion.firstOption %>" /> 
+				<% end %>
+			</td>
 			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.firstOption).text %> </td>
 		</label>
 	</tr>
 	<tr>
 		<label>
 			<td style="font-size: x-large"> Option 2: </td> 
-			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" /> </td>
+			<td style="font-size: x-large">
+				<% if @showQuestion.typeOfQuestion.to_i == 2 %>
+					<input type="checkbox" name="answer[]" value="<%= @showQuestion.secondOption %>" />
+				<% else %>
+					<input type="radio" name="answer" value="<%= @showQuestion.secondOption %>" /> 
+				<% end %>
+			</td>
 			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.secondOption).text %> </td>
 		</label>
 	</tr>
 	<tr>
 		<label>
 			<td style="font-size: x-large"> Option 3: </td> 
-			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" /> </td>
+			<td style="font-size: x-large">
+				<% if @showQuestion.typeOfQuestion.to_i == 2 %>
+					<input type="checkbox" name="answer[]" value="<%= @showQuestion.thirdOption %>" />
+				<% else %>
+					<input type="radio" name="answer" value="<%= @showQuestion.thirdOption %>" /> 
+				<% end %>
+			</td>
 			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.thirdOption).text %> </td>
 		</label>
 	</tr>
 	<tr>
 		<label>
 			<td style="font-size: x-large"> Option 4: </td> 
-			<td style="font-size: x-large"> <input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" /> </td>
+			<td style="font-size: x-large">
+				<% if @showQuestion.typeOfQuestion.to_i == 2 %>
+					<input type="checkbox" name="answer[]" value="<%= @showQuestion.fourthOption %>" />
+				<% else %>
+					<input type="radio" name="answer" value="<%= @showQuestion.fourthOption %>" /> 
+				<% end %>
+			</td>
 			<td style="font-size: x-large"> <%= Nokogiri::HTML.parse(@showQuestion.fourthOption).text %> </td>
 		</label>
 	</tr>

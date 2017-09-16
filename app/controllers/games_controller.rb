@@ -69,17 +69,22 @@ class GamesController < ApplicationController
         @questionNumber = @stateVariable[1].strip.to_i 
         @question = Question.where(category: @category, subCategory: @subCategory).limit(@questionNumber.to_i + 1)[@questionNumber.to_i]
         @size = Question.where(category: @category, subCategory: @subCategory).count
-        puts @answer
-        puts @question.answer
-		if @answer == @question.answer
-			@questionNumber = (@questionNumber + 1) % @size
-			@currentGame.state = @stateVariable[0] + ';' + @questionNumber.to_s
-			@currentGame.currentScore = @currentGame.currentScore + 1
-			if @currentGame.currentScore > @currentGame.highestScore
-				@currentGame.highestScore = @currentGame.currentScore
-			end
-			@currentGame.save
-			redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
+		correct = 0
+        if @question.typeOfQuestion.to_i == 2
+            correct = checkMulti
+        else
+            correct = checkSingle
+        end
+
+        if correct
+            @questionNumber = (@questionNumber + 1) % @size
+            @currentGame.state = @stateVariable[0] + ';' + @questionNumber.to_s
+            @currentGame.currentScore = @currentGame.currentScore + 1
+            if @currentGame.currentScore > @currentGame.highestScore
+                @currentGame.highestScore = @currentGame.currentScore
+            end
+            @currentGame.save
+            redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		else
 			redirect_to :action => 'showQuestion', :category => @currentGame.category, :subCategory => @currentGame.subCategory, :question => @questionNumber
 		end
@@ -132,4 +137,28 @@ class GamesController < ApplicationController
 			@subCategory = request[:subCategory]
 			@currentGame = @user.games.where(category: @category, subCategory: @subCategory).first
 		end
+
+        def checkMulti
+            @correctAnswers = @question.answer.split(';')
+            @answer.each do |answer|
+                answerFound = 0
+                @correctAnswers.each do |currentAnswer|
+                    if answer == currentAnswer
+                        answerFound = 1
+                    end
+                end
+                if answerFound == 0
+                    return false
+                end
+            end
+            return true
+        end
+
+        def checkSingle
+            if @answer == @question.answer
+                return true
+            else
+                return false
+            end
+        end
 end
