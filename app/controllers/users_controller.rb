@@ -32,9 +32,11 @@ class UsersController < ApplicationController
 		@games << @second
 		
 		@user.games.each do |loopGame|
-			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][2] = loopGame.state
-			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][3] = loopGame.currentScore.to_s 
-			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_s
+            if loopGame.state != nil
+    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][2] = loopGame.state
+    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][3] = loopGame.currentScore.to_s 
+    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_s
+            end
 		end
 
 		render 'dashboard'

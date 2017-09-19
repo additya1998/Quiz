@@ -10,11 +10,11 @@
 
 <% if @showQuestion.typeOfQuestion.to_i == 1 or @showQuestion.typeOfQuestion.to_i == 2 %>
 	<h2> Question: <%= Nokogiri::HTML.parse(@showQuestion.question).text %> </h2> <br />
-    <% if @showQuestion.typeOfQuestion.to_i == 1 %> 
-        (Single Correct)
-    <% else %>
-        (Multiple Correct)
-    <% end %>
+	<% if @showQuestion.typeOfQuestion.to_i == 1 %> 
+		(Single Correct)
+	<% else %>
+		(Multiple Correct)
+	<% end %>
 
 <% elsif @showQuestion.typeOfQuestion.to_i == 3 %>
 	<h2> Identify the image </h2> <br />
@@ -27,8 +27,8 @@
 	</audio>
 
 <% end %>
-
 </div>
+
 <form action="/submit/<%= @showQuestion.category %>/<%= @showQuestion.subCategory %>/<%= @questionNumber %>" method="post">
 <table style="margin-left: 100px">
 	<tr>
@@ -84,11 +84,31 @@
 		</label>
 	</tr>
 </table>
+
+<table style="margin-left: 100px">
+	<tr>
+		<label>
+			<% if @firstLifeline.to_i != 0 %>
+				<td style="font-size: x-large">
+					<input type="radio" name="lifeline" value="skip" /> 
+				</td>
+				<td style="font-size: x-large"> Skip Question </td>
+			<% end %>
+			<% if @secondLifeline.to_i != 0 %>
+				<td style="font-size: x-large">
+					<input type="radio" name="lifeline" value="doubleScore" /> 
+				</td>
+				<td style="font-size: x-large"> Double Points </td> 
+			<% end %>
+		</label>
+	</tr>
+</table>
+
 <br />
 <br />
-<button type="submit" name="submit" style="margin-left: 450px; font-size: x-large"> Submit </button>
+
+<button type="submit" name="submit" style="margin-left: 800px; font-size: x-large"> Submit </button>
 </form>
 <br /> <br /> <br />
 <%= render 'layouts/user' %>
-
 </body>
