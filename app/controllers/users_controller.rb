@@ -32,12 +32,18 @@ class UsersController < ApplicationController
 		@games << @second
 		
 		@user.games.each do |loopGame|
-            if loopGame.state != nil
-    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][2] = loopGame.state
-    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][3] = loopGame.currentScore.to_s 
-    			@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_s
-            end
+			if loopGame.state != nil
+				@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][2] = loopGame.state
+				@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][3] = loopGame.currentScore.to_s 
+				@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_s
+			else
+				if @games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4].to_i < loopGame.highestScore.to_i
+					@games[ENV[loopGame.category].to_i][ENV[loopGame.subCategory].to_i][4] = loopGame.highestScore.to_i
+				end
+			end
 		end
+
+		puts @games
 
 		render 'dashboard'
 	end
@@ -51,12 +57,12 @@ class UsersController < ApplicationController
 						@edit = true
 					end
 				end
-                @user = User.where(username: request['username']).first
+				@user = User.where(username: request['username']).first
 				if @user
-                    render 'profile'
-                else
-                    redirect_to '/login'
-                end
+					render 'profile'
+				else
+					redirect_to '/login'
+				end
 			else 
 				if session[:username]
 					@edit = true
